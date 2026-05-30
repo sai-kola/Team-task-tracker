@@ -5,6 +5,9 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.routes.js";
+import authenticate from "./middleware/auth.middleware.js";
+import authorize from "./middleware/role.middleware.js";
+import projectRoutes from "./routes/project.routes.js";
 
 const app = express();
 
@@ -31,6 +34,25 @@ app.get("/", (req, res) => {
 app.use(
   "/api/auth",
   authRoutes
+);
+
+app.get(
+  "/api/protected",
+  authenticate,
+  authorize("ADMIN"),
+  (req, res) => {
+    res.json({
+      success: true,
+      message:
+        "Protected route accessed",
+      user: req.user,
+    });
+  }
+);
+
+app.use(
+  "/api/projects",
+  projectRoutes
 );
 
 export default app;
