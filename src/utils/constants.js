@@ -17,3 +17,24 @@ export const TASK_STATUS = {
   BLOCKED: "BLOCKED",
   DONE: "DONE",
 };
+
+export const TASK_TRANSITIONS = {
+  TODO: [
+    "IN_PROGRESS",
+    "BLOCKED",
+  ],
+
+  IN_PROGRESS: [
+    "IN_REVIEW",
+    "BLOCKED",
+  ],
+
+  IN_REVIEW: [
+    "DONE",
+    "BLOCKED",
+  ],
+
+  BLOCKED: [],
+
+  DONE: [],
+};

@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth.routes.js";
 import authenticate from "./middleware/auth.middleware.js";
 import authorize from "./middleware/role.middleware.js";
 import projectRoutes from "./routes/project.routes.js";
+import taskRoutes from "./routes/task.routes.js";
 
 const app = express();
 
@@ -53,6 +54,11 @@ app.get(
 app.use(
   "/api/projects",
   projectRoutes
+);
+
+app.use(
+  "/api/tasks",
+  taskRoutes
 );
 
 export default app;
